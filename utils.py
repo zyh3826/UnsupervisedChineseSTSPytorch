@@ -9,11 +9,11 @@ import scipy.stats as ss
 DATASET_ROOT_PATH = '/source/d0/NLPSource/STSDatasets/'
 MODEL_ROOT_PATH = '/source/d0/embedding/transformer_based'
 WHITENING_SAVE_ROOT = '/source/d0/embedding/whitening'
-RESULT_SAVE_PATH = '/source/d0/embedding/whitening/res.json'
+RESULT_SAVE_PATH = '/source/d0/embedding/whitening/res128dim.json'
 
 config = {
-    'batch_size': 128,
-    'cuda_id': 0
+    'batch_size': 1024,
+    'cuda_id': 1
 }
 
 DATASETS = {
@@ -38,6 +38,15 @@ MODELS = {
     'roformer': 'chinese_roformer_L-12_H-768_A-12',
     'bert_uer_large': 'bert_uer_large',
     # 'sbert': 'stsb-xlm-r-multilingual',
+}
+OUTPUT_SIZE = {
+    'simbert_L12_H768': 768,
+    'bert_base_chinese': 768,
+    'hit_bert_wwm_ext': 768,
+    'hit_bert_wwm_ext_large': 1024,
+    'wobert': 768,
+    'roformer': 768,
+    'bert_uer_large': 1024,
 }
 
 
