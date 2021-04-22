@@ -23,7 +23,8 @@ from utils import (
                     DATASETS,
                     VEC_TYPE,
                     WHITENING_SAVE_ROOT,
-                    RESULT_SAVE_PATH)
+                    RESULT_SAVE_PATH,
+                    OUTPUT_SIZE)
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -131,15 +132,17 @@ def main():
             logger.info(info)
             for v_type in VEC_TYPE:
                 if model_name in ['wobert', 'roformer'] and v_type == 'pooler':
-                    logger.ingor("model wobert and roformer don't have pooler")
+                    logger.info("model wobert and roformer don't have pooler")
                     continue
                 res[model_name][dataset_name][v_type] = {}
-                for nc in [256, 384]:
-                    res[model_name][dataset_name][v_type][nc] = {}
-                    for whitening in [True, False]:
+                for whitening in [True, False]:
+                    key = 'whitening' if whitening else 'not_whitening'
+                    res[model_name][dataset_name][v_type][key] = {}
+                    n_components = [128, 256, 384, 512, OUTPUT_SIZE[model_name]] if whitening else [OUTPUT_SIZE[model_name]]
+                    for nc in n_components:
                         print('\n')
-                        info = '**********Model: {}. Dataset: {}. Vector type: {}. n_components: {}. Whitening: {}**********'
-                        logger.info(info.format(model_name, dataset_name, v_type, nc, whitening))
+                        info = '**********Model: {}. Dataset: {}. Vector type: {}. Whitening: {}. n_components: {}**********'
+                        logger.info(info.format(model_name, dataset_name, v_type, whitening, nc))
                         key = 'whitening' if whitening else 'not_whitening'
                         start_time = time.time()
                         tail = '{}-{}-{}-{}.bin'.format(model_name, dataset_name, v_type, nc)
@@ -155,7 +158,7 @@ def main():
                                     whitening_save_path=whitening_save_path,
                                     dataloaders=dataloaders,
                                     whitening=whitening)
-                        res[model_name][dataset_name][v_type][nc][key] = tmp
+                        res[model_name][dataset_name][v_type][key][nc] = tmp
                         step += 1
                         if step % 10 == 0:
                             logger.info('**********Saveing results**********')
