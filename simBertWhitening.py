@@ -64,7 +64,7 @@ class Tokenizer(nn.Module):
         super().__init__()
         if not os.path.exists(vocab_path):
             raise FileNotFoundError('vocab not found.')
-        if model_name in ['bert_base_chinese', 'bert_uer_large']:
+        if model_name in ['bert_base_chinese', 'roformer', 'bert_uer_large']:
             self.tokenizer = BertTokenizer.from_pretrained(vocab_path)
         else:
             self.tokenizer = AutoTokenizer.from_pretrained(vocab_path)
