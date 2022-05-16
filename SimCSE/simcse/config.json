@@ -1,0 +1,23 @@
+{
+    "model_name_or_path": "/source/c0/NLPSource/embedding/transformer_based/chinese_simbert_L-12_H-768_A-12",
+    "train_file": "/source/c0/NLPSource/Datasets/MediaResource/iPanel/homed_tv/released_desc_with_punctuation.txt",
+    "output_dir": "/source/c0/nlp/MediaAssetsSearch/save/simbert_V1_L12_H768/simcse_homed_tv_released_media_assets_with_punctuation-avg_first_last-max_seq_length_200-lr_1e-5-dropout_0.3",
+    "num_train_epochs": 1,
+    "per_device_train_batch_size": 8,
+    "learning_rate": 1e-5,
+    "max_seq_length": 200,
+    "eval_steps": 125000000,
+    "save_steps": 500000,
+    "pooler_type": "avg_first_last",
+    "mlp_only_train": false,
+    "overwrite_output_dir": true,
+    "temp": 0.05,
+    "do_train": true,
+    "do_eval": false,
+    "fp16": false,
+    "device": "cuda: 0",
+    "gradient_accumulation_steps": 4,
+    "data_cache_dir": "/source/c0/NLPSource/Datasets/cache/",
+    "dimension_reduction": true,
+    "output_size": 128
+}
