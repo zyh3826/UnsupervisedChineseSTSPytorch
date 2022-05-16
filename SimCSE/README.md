@@ -1,3 +1,4 @@
+# simcse代码是将官方代码剥离出来的，https://github.com/princeton-nlp/SimCSE
 # 概况
 + 模型：`simbert_L12_H768`，`bert_base_chinese`，`hit_roberta_wwm_ext`，`hit_bert_wwm_ext`，`hit_bert_wwm`
 + 数据集：`LCQMC`，`STS_B`
